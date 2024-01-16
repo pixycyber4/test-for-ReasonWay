@@ -1,18 +1,35 @@
 #container {
   position: relative;
-  width: 764px;
-  height: 764px;
-  margin-top: 30px;
+  width: 90%;
+  max-width: 1240px;
+  min-height: 500px;
+  min-width: 300px;
+  margin: 10px auto;
   border: 1px solid rgb(0, 0, 0);
+  box-sizing: border-box;
 }
 
 .block {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid rgb(0, 0, 0);
   box-sizing: border-box;
 }
 
 #fullness {
-  position: absolute;
-  transform: translate(10px, -800px);
+  margin: 10px 70px;
+}
+
+@media (max-width: 627px) {
+  #container {
+    min-height: 600px;
+  }
+}
+
+@media (max-width: 513px) {
+  #container {
+    min-height: 770px;
+  }
 }
