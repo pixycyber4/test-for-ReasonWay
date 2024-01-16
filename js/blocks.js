@@ -107,23 +107,27 @@ function calculateFullness(container, blocks) {
             }
         }
     }
-
     const totalArea = container.width * container.height;
     const blockArea = blocks.reduce((acc, block) => acc + block.width * block.height, 0);
     const fullness = 1 - internalCavities / (internalCavities + blockArea);
-
     document.getElementById('fullness').innerText = `Fullness: ${fullness.toFixed(2) * 100}`;
 
     return fullness;
 } //Determination of the number of internal cavities by iteration, calculation of the coefficient of useful use of space
 
 
-window.addEventListener('resize', () => {
-    container.width = window.innerWidth * 0.8;
+window.addEventListener('resize', handleResize);
+window.addEventListener('orientationchange', handleResize);
+document.addEventListener('fullscreenchange', handleResize);
+
+function handleResize() {
+    const containerElement = document.getElementById('container');
+    container.width = containerElement.clientWidth;
+
     const updatedResult = findOptimalPlace(container, blocks);
     displayBlocks(updatedResult.container, updatedResult.blocks);
     calculateFullness(updatedResult.container, updatedResult.blocks);
-}) //Automatic enumeration of the location of blocks and display of the updated result on the page
+} //Automatic enumeration of the location of blocks and display of the updated result on the page
 
 
 
